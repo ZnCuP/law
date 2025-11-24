@@ -76,3 +76,21 @@
   color: var(--primary-dark);
   transform: translateX(4px);
 }
+
+@media (max-width: 480px) {
+  .card-image {
+    height: 160px;
+  }
+
+  .card-content {
+    padding: 1rem;
+  }
+
+  .card-content h3 {
+    font-size: 1.05rem;
+  }
+
+  .card-date {
+    font-size: 0.85rem;
+  }
+}

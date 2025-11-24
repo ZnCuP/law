@@ -405,3 +405,22 @@
     font-size: 80px;
   }
 }
+
+@media (max-width: 480px) {
+  .attorney-hero {
+    height: 320px;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .separator {
+    display: none;
+  }
+}

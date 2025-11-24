@@ -8,6 +8,7 @@ import InsightsPage from './pages/InsightsPage'
 import NewsPage from './pages/NewsPage'
 import EventsPage from './pages/EventsPage'
 import BlogsPage from './pages/BlogsPage'
+import ResourcesPage from './pages/ResourcesPage'
 import PeoplePage from './pages/PeoplePage'
 import AttorneyDetailPage from './pages/AttorneyDetailPage'
 import PracticesPage from './pages/PracticesPage'
@@ -20,12 +21,13 @@ function AnimatedRoutes() {
   const location = useLocation()
   
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/insights" element={<InsightsPage />} />
-        <Route path="/news" element={<NewsPage />} />
-        <Route path="/events" element={<EventsPage />} />
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/insights" element={<InsightsPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/events" element={<EventsPage />} />
         <Route path="/blogs" element={<BlogsPage />} />
         <Route path="/people" element={<PeoplePage />} />
         <Route path="/people/:id" element={<AttorneyDetailPage />} />
@@ -40,7 +42,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <LanguageProvider>
-      <Router>
+      <Router basename="/law">
         <ScrollToTop />
         <div className="app">
           <Navbar />

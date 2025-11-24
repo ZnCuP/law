@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { t } from '../i18n/translations'
 import PageHeader from '../components/PageHeader'
+import './ContactPage.css'
 
 function ContactPage() {
   const { language } = useLanguage()
@@ -30,184 +31,89 @@ function ContactPage() {
     <div className="page">
       <PageHeader 
         title={t('contact.title', language)}
-        description={t('contact.description', language)}
+        subtitle={t('contact.description', language)}
       />
-      
-      <div className="content-wrapper">
+
+      <section className="contact-section">
         <div className="container">
-          <div className="contact-content" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <h2>{t('contact.heading', language)}</h2>
-            <p style={{ marginBottom: '32px', color: '#666' }}>
-              {t('contact.intro', language)}
-            </p>
-            
-            <form onSubmit={handleSubmit} style={{ 
-              background: '#f8f8f8', 
-              padding: '40px', 
-              borderRadius: '8px' 
-            }}>
-              <div style={{ marginBottom: '24px' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '600',
-                  color: '#333'
-                }}>
-                  {t('contact.name', language)} *
-                </label>
+          <div className="contact-intro">
+            <h2 className="contact-title">{t('contact.heading', language)}</h2>
+            <p className="contact-lead">{t('contact.intro', language)}</p>
+          </div>
+
+          <div className="contact-grid">
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label className="form-label">{t('contact.name', language)} *</label>
                 <input
+                  className="form-input"
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  style={{
-                    width: '100%',
-                    padding: '12px',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                    fontSize: '16px'
-                  }}
                 />
               </div>
-              
-              <div style={{ marginBottom: '24px' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '600',
-                  color: '#333'
-                }}>
-                  {t('contact.email', language)} *
-                </label>
+
+              <div className="form-group">
+                <label className="form-label">{t('contact.email', language)} *</label>
                 <input
+                  className="form-input"
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  style={{
-                    width: '100%',
-                    padding: '12px',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                    fontSize: '16px'
-                  }}
                 />
               </div>
-              
-              <div style={{ marginBottom: '24px' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '600',
-                  color: '#333'
-                }}>
-                  {t('contact.company', language)}
-                </label>
+
+              <div className="form-group">
+                <label className="form-label">{t('contact.company', language)}</label>
                 <input
+                  className="form-input"
                   type="text"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  style={{
-                    width: '100%',
-                    padding: '12px',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                    fontSize: '16px'
-                  }}
                 />
               </div>
-              
-              <div style={{ marginBottom: '24px' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '600',
-                  color: '#333'
-                }}>
-                  {t('contact.subject', language)} *
-                </label>
+
+              <div className="form-group">
+                <label className="form-label">{t('contact.subject', language)} *</label>
                 <input
+                  className="form-input"
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  style={{
-                    width: '100%',
-                    padding: '12px',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                    fontSize: '16px'
-                  }}
                 />
               </div>
-              
-              <div style={{ marginBottom: '24px' }}>
-                <label style={{ 
-                  display: 'block', 
-                  marginBottom: '8px', 
-                  fontWeight: '600',
-                  color: '#333'
-                }}>
-                  {t('contact.message', language)} *
-                </label>
+
+              <div className="form-group">
+                <label className="form-label">{t('contact.message', language)} *</label>
                 <textarea
+                  className="form-textarea"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
                   rows="6"
-                  style={{
-                    width: '100%',
-                    padding: '12px',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                    fontSize: '16px',
-                    fontFamily: 'inherit',
-                    resize: 'vertical'
-                  }}
                 />
               </div>
-              
-              <button 
-                type="submit"
-                style={{
-                  background: '#c8102e',
-                  color: 'white',
-                  padding: '14px 32px',
-                  border: 'none',
-                  borderRadius: '4px',
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'background 0.3s'
-                }}
-                onMouseOver={(e) => e.target.style.background = '#a00d25'}
-                onMouseOut={(e) => e.target.style.background = '#c8102e'}
-              >
+
+              <button type="submit" className="btn-primary">
                 {t('contact.send', language)}
               </button>
             </form>
-            
-            <div style={{ 
-              marginTop: '48px', 
-              padding: '32px', 
-              background: '#f8f8f8',
-              borderRadius: '8px'
-            }}>
-              <h3 style={{ color: '#c8102e', marginBottom: '16px' }}>
-                {t('contact.offices', language)}
-              </h3>
-              <p style={{ color: '#666' }}>
-                {t('contact.officesText', language)}
-              </p>
-            </div>
+
+            <aside className="contact-info-card">
+              <h3 className="info-title">{t('contact.offices', language)}</h3>
+              <p className="info-text">{t('contact.officesText', language)}</p>
+            </aside>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

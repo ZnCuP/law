@@ -4,20 +4,9 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { t } from '../i18n/translations'
 import './PeoplePage.css'
 
-// 模拟律师数据
 const mockAttorneys = [
-  { id: 1, name: 'Michael Anderson', title: 'Partner', practice: 'Corporate Finance', office: 'San Francisco', image: null },
-  { id: 2, name: 'Sarah Chen', title: 'Partner', practice: 'Litigation', office: 'Beijing', image: null },
-  { id: 3, name: 'David Martinez', title: 'Of Counsel', practice: 'Intellectual Property', office: 'New York', image: null },
-  { id: 4, name: 'Emily Johnson', title: 'Partner', practice: 'Regulatory', office: 'Washington DC', image: null },
-  { id: 5, name: 'Robert Kim', title: 'Associate', practice: 'Corporate Finance', office: 'Los Angeles', image: null },
-  { id: 6, name: 'Jennifer Lee', title: 'Partner', practice: 'Litigation', office: 'San Francisco', image: null },
-  { id: 7, name: 'Christopher Brown', title: 'Partner', practice: 'Real Estate', office: 'New York', image: null },
-  { id: 8, name: 'Amanda Wilson', title: 'Of Counsel', practice: 'Labor & Employment', office: 'London', image: null },
-  { id: 9, name: 'James Taylor', title: 'Partner', practice: 'Intellectual Property', office: 'San Francisco', image: null },
-  { id: 10, name: 'Michelle Davis', title: 'Associate', practice: 'Privacy & Data Security', office: 'Tokyo', image: null },
-  { id: 11, name: 'Daniel White', title: 'Partner', practice: 'Antitrust', office: 'Brussels', image: null },
-  { id: 12, name: 'Lisa Garcia', title: 'Partner', practice: 'Tax', office: 'New York', image: null },
+  { id: 1, name: 'Jia Song', title: 'Founding Partner', practice: 'Wealth Management', office: 'New York/Shenzhen', image: null },
+  { id: 2, name: 'Mao Peng', title: 'Partner', practice: 'Transnational Litigation & Arbitration', office: 'New York/China', image: null }
 ]
 
 function PeoplePage() {
@@ -32,27 +21,21 @@ function PeoplePage() {
   
   const practices = [
     'All Practices',
-    'Corporate Finance',
-    'Litigation',
-    'Intellectual Property',
-    'Regulatory',
-    'Real Estate',
-    'Labor & Employment',
-    'Privacy & Data Security',
-    'Antitrust',
-    'Tax'
+    'Wealth Management',
+    'Startup + Venture Capital',
+    'Commercial Litigation',
+    'IP Litigation',
+    'Corporate Governance',
+    'Transnational Litigation & Arbitration',
+    'Judgment Recognition & Asset Recovery',
+    'Global Investment & Compliance'
   ]
 
   const offices = [
     'All Offices',
-    'San Francisco',
     'New York',
-    'Washington DC',
-    'Los Angeles',
-    'Beijing',
-    'Tokyo',
-    'London',
-    'Brussels'
+    'Shenzhen',
+    'China'
   ]
 
   const filteredAttorneys = mockAttorneys.filter(attorney => {

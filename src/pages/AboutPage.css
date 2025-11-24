@@ -1,0 +1,84 @@
+.about-section {
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.about-intro {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 32px;
+  font-weight: 300;
+  color: #000;
+  font-family: 'Georgia', serif;
+  margin-bottom: 16px;
+}
+
+.about-lead {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.8;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.about-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+}
+
+.about-card:hover {
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-4px);
+}
+
+.about-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  background: var(--primary-color);
+  padding: 6px 12px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+.about-card-title {
+  font-size: 22px;
+  font-weight: 400;
+  color: #000;
+  margin: 8px 0 12px 0;
+  line-height: 1.4;
+  font-family: 'Georgia', serif;
+}
+
+.about-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+}
+
+@media (max-width: 1024px) {
+  .about-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .about-section { padding: 40px 0; }
+  .about-title { font-size: 28px; }
+  .about-lead { font-size: 16px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-card { padding: 20px; }
+}

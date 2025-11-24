@@ -2,6 +2,7 @@ import React from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { t } from '../i18n/translations'
 import PageHeader from '../components/PageHeader'
+import './AboutPage.css'
 
 function AboutPage() {
   const { language } = useLanguage()
@@ -10,62 +11,37 @@ function AboutPage() {
     <div className="page">
       <PageHeader 
         title={t('about.title', language)}
-        description={t('about.description', language)}
+        subtitle={t('about.description', language)}
       />
       
-      <div className="content-wrapper">
+      <section className="about-section">
         <div className="container">
-          <div className="about-content">
-            <h2>{t('about.heading', language)}</h2>
-            <p>
-              {t('about.intro', language)}
-            </p>
-            
-            <div className="about-sections" style={{ marginTop: '40px' }}>
-              <div className="about-section" style={{ 
-                marginBottom: '32px', 
-                padding: '32px', 
-                background: '#f8f8f8',
-                borderRadius: '8px'
-              }}>
-                <h3 style={{ color: '#c8102e', marginBottom: '12px' }}>
-                  {t('about.history', language)}
-                </h3>
-                <p>
-                  {t('about.historyText', language)}
-                </p>
-              </div>
-              
-              <div className="about-section" style={{ 
-                marginBottom: '32px', 
-                padding: '32px', 
-                background: '#f8f8f8',
-                borderRadius: '8px'
-              }}>
-                <h3 style={{ color: '#c8102e', marginBottom: '12px' }}>
-                  {t('about.values', language)}
-                </h3>
-                <p>
-                  {t('about.valuesText', language)}
-                </p>
-              </div>
-              
-              <div className="about-section" style={{ 
-                padding: '32px', 
-                background: '#f8f8f8',
-                borderRadius: '8px'
-              }}>
-                <h3 style={{ color: '#c8102e', marginBottom: '12px' }}>
-                  {t('about.globalReach', language)}
-                </h3>
-                <p>
-                  {t('about.globalReachText', language)}
-                </p>
-              </div>
-            </div>
+          <div className="about-intro">
+            <h2 className="about-title">{t('about.heading', language)}</h2>
+            <p className="about-lead">{t('about.intro', language)}</p>
+          </div>
+
+          <div className="about-grid">
+            <article className="about-card">
+              <div className="about-badge">{t('about.history', language)}</div>
+              <h3 className="about-card-title">{t('about.history', language)}</h3>
+              <p className="about-text">{t('about.historyText', language)}</p>
+            </article>
+
+            <article className="about-card">
+              <div className="about-badge">{t('about.values', language)}</div>
+              <h3 className="about-card-title">{t('about.values', language)}</h3>
+              <p className="about-text">{t('about.valuesText', language)}</p>
+            </article>
+
+            <article className="about-card">
+              <div className="about-badge">{t('about.globalReach', language)}</div>
+              <h3 className="about-card-title">{t('about.globalReach', language)}</h3>
+              <p className="about-text">{t('about.globalReachText', language)}</p>
+            </article>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

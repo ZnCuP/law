@@ -106,44 +106,44 @@ export const translations = {
   // About Page
   about: {
     title: {
-      en: 'About Morrison Foerster',
-      zh: '关于 Morrison Foerster'
+      en: 'About Summit Law',
+      zh: '关于 Summit Law'
     },
     description: {
-      en: 'Learn about our history, values, and commitment to excellence',
-      zh: '了解我们的历史、价值观和对卓越的承诺'
+      en: 'Seamless U.S.–China legal services for businesses, families, and entrepreneurs',
+      zh: '为企业、家庭与创业者提供无缝的中美跨境法律服务'
     },
     heading: {
       en: 'About Our Firm',
       zh: '关于我们的律所'
     },
     intro: {
-      en: 'Morrison Foerster is a global law firm recognized for exceptional client service, legal innovation, and deep industry expertise. With lawyers across the Americas, Asia, and Europe, we serve clients ranging from Fortune 100 companies to emerging startups.',
-      zh: 'Morrison Foerster 是一家全球律师事务所，以卓越的客户服务、法律创新和深厚的行业专长而闻名。我们的律师遍布美洲、亚洲和欧洲，服务客户涵盖财富100强公司到新兴初创企业。'
+      en: 'Summit Law PLLC is a cross-border law firm founded in New York, built on the principle of “Global Standards, Local Advantage.” We provide seamless U.S.–China legal services to businesses, families, and entrepreneurs navigating complex international challenges.',
+      zh: 'Summit Law PLLC 是一家创立于纽约的跨境律师事务所，秉持“全球标准，本地优势”的原则，为企业、家庭与创业者在复杂的国际环境中提供无缝的中美法律服务。'
     },
     history: {
       en: 'Our History',
       zh: '我们的历史'
     },
     historyText: {
-      en: 'Founded in San Francisco, Morrison Foerster has grown to become one of the world\'s premier law firms, known for tackling complex legal challenges with creativity and precision.',
-      zh: '创立于旧金山的 Morrison Foerster 已成长为世界顶级律师事务所之一，以创造性和精准性应对复杂法律挑战而闻名。'
+      en: 'Founded in New York, Summit Law has grown into a trusted advisor for Chinese enterprises expanding overseas and U.S.-based Chinese-speaking clients. Our lawyers have deep roots in both jurisdictions, with backgrounds in leading Chinese law firms, U.S. courts, and international institutions.',
+      zh: 'Summit Law 成立于纽约，逐步成长为中国企业出海与在美中文客户的可信赖顾问。我们的律师深耕两地法域，拥有来自中国顶尖律所、美国法院与国际机构的专业背景。'
     },
     values: {
       en: 'Our Values',
       zh: '我们的价值观'
     },
     valuesText: {
-      en: 'We are committed to diversity, inclusion, and social responsibility. Our values guide everything we do, from how we serve clients to how we support our communities.',
-      zh: '我们致力于多元化、包容性和社会责任。我们的价值观指导着我们所做的一切，从如何服务客户到如何支持社区。'
+      en: 'We believe in clarity, responsiveness, and cultural intelligence. Our commitment is to provide transparent pricing, milestone-based deliverables, and clear, actionable legal guidance—combining international standards with local understanding.',
+      zh: '我们强调清晰、响应与文化洞察。我们承诺采用透明定价、里程碑式交付与清晰可执行的法律建议，将国际标准与本地理解相结合。'
     },
     globalReach: {
       en: 'Global Reach',
       zh: '全球网络'
     },
     globalReachText: {
-      en: 'With offices in major business centers worldwide, we provide seamless service across borders and time zones, bringing local knowledge and global perspective to every matter.',
-      zh: '我们在全球主要商业中心设有办事处，跨越国界和时区提供无缝服务，为每个事务带来本地知识和全球视野。'
+      en: 'With teams in major business hubs across the U.S. and China, Summit Law delivers real-time support across time zones. We work closely with clients in technology, e-commerce, finance, art, and family wealth—helping protect, grow, and transition global assets with confidence.',
+      zh: '我们在中国与美国主要商业枢纽设有团队，跨时区提供实时支持，深度服务于科技、电商、金融、艺术与家族财富等行业，助力客户自信地保护、增长与传承全球资产。'
     }
   },
   

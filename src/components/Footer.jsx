@@ -20,7 +20,11 @@ function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2025 专业服务中心。保留所有权利。</p>
+          <p>&copy; 2025 Summit Law PLLC. 保留所有权利。</p>
+          <div className="footer-info">
+            <div>Contact: jia.song@summitlaw.net · (917)293-9201</div>
+            <div>Offices: New York / Shenzhen</div>
+          </div>
         </div>
       </div>
     </footer>

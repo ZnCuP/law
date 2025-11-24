@@ -49,6 +49,10 @@ function Navbar() {
     return () => window.removeEventListener('keydown', handleEscape)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen || signupOpen || searchOpen ? 'hidden' : ''
+  }, [menuOpen, signupOpen, searchOpen])
+
   return (
     <>
       <motion.nav 
@@ -93,8 +97,52 @@ function Navbar() {
               <button 
                 className="menu-btn"
                 onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="打开菜单"
               >
-                {language === 'en' ? 'MENU' : '菜单'}
+                <svg className="menu-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <line x1="3" y1="6" x2="21" y2="6" strokeWidth="2"/>
+                  <line x1="3" y1="12" x2="21" y2="12" strokeWidth="2"/>
+                  <line x1="3" y1="18" x2="21" y2="18" strokeWidth="2"/>
+                </svg>
+                <span className="menu-label">{t('navbar.menu', language)}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="nav-mobile">
+            <div className="nav-actions">
+              <button 
+                className="search-btn"
+                onClick={() => setSearchOpen(!searchOpen)}
+                aria-label="搜索"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="11" cy="11" r="8" strokeWidth="2"/>
+                  <path d="M21 21l-4.35-4.35" strokeWidth="2"/>
+                </svg>
+              </button>
+
+              <button 
+                className="lang-toggle"
+                onClick={toggleLanguage}
+                aria-label="切换语言"
+              >
+                <span style={{ opacity: language === 'en' ? 1 : 0.4 }}>EN</span>
+                <span style={{ margin: '0 4px' }}>/</span>
+                <span style={{ opacity: language === 'zh' ? 1 : 0.4 }}>中</span>
+              </button>
+
+              <button 
+                className="menu-btn mobile"
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="打开菜单"
+              >
+                <div className={`hamburger ${menuOpen ? 'open' : ''}`} aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
               </button>
             </div>
           </div>
@@ -168,7 +216,7 @@ function Navbar() {
                 <h3>{t('menu.navigate', language)}</h3>
                 <Link to="/people" onClick={() => setMenuOpen(false)}>{t('menu.people', language)}</Link>
                 <Link to="/practices" onClick={() => setMenuOpen(false)}>{t('menu.practices', language)}</Link>
-                <Link to="/" onClick={() => setMenuOpen(false)}>{t('menu.resources', language)}</Link>
+                <Link to="/resources" onClick={() => setMenuOpen(false)}>{t('menu.resources', language)}</Link>
                 <Link to="/about" onClick={() => setMenuOpen(false)}>{t('menu.about', language)}</Link>
                 <Link to="/contact" onClick={() => setMenuOpen(false)}>{t('menu.contact', language)}</Link>
               </div>

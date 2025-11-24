@@ -3,85 +3,64 @@ import { useParams, Link } from 'react-router-dom'
 import { useLanguage } from '../contexts/LanguageContext'
 import './AttorneyDetailPage.css'
 
-// 模拟律师详细数据
 const attorneyDetails = {
   1: {
-    name: 'Michael Anderson',
-    title: 'Partner',
-    office: 'San Francisco',
-    email: 'manderson@mofo.com',
-    phone: '(415) 268-7000',
+    name: 'Jia Song',
+    title: 'Founding Partner',
+    office: 'New York/Shenzhen',
+    email: 'jia.song@summitlaw.net',
+    phone: '(917)293-9201',
     image: null,
-    quote: '"I combine energy, attention to detail, and a deep understanding of my clients\' businesses to defend them in their most complex and high-stakes matters."',
-    bio: `Michael Anderson is a seasoned advisor and litigator dedicated to addressing his clients' most complex matters. A partner in Morrison Foerster's Complex Litigation + Advisement Group, Michael represents leading companies in high-stakes product liability, class action, mass tort, and commercial litigation. He has extensive experience defending cases involving medical devices, pharmaceuticals, consumer products, automobiles, and emerging technologies such as artificial intelligence.
+    quote: '“I combine strategic clarity, cultural fluency, and meticulous legal craftsmanship to help my clients build, protect, and transition their global assets.”',
+    bio: `Jia Song is a cross-border attorney dual-qualified in New York and Mainland China, advising clients at the intersection of family wealth, corporate structuring, and international business. As the founder of Summit Law PLLC, Jia helps individuals and companies navigate complex legal challenges that span jurisdictions.
 
-Michael makes a point of mastering the details of his clients' businesses to guide them through complex litigation. He dives deep into the technology behind their products and systems, collaborating with engineers, scientists, and other experts to understand how they function and to build strong, credible defenses.`,
+Jia has represented entrepreneurs, families, and corporations in high-stakes matters involving cross-border marriage and divorce, offshore trust and estate planning, and international corporate formation and compliance. Her experience spans both litigation and non-contentious advisory work, with a focus on U.S.–China transactions, intellectual property, and family wealth protection.
+
+Fluent in both legal systems and business cultures, Jia bridges East and West—translating global strategy into local action. Her clients value her for her precision, empathy, and ability to craft forward-looking solutions that safeguard what matters most.`,
     practices: [
-      'Class Actions + Mass Torts',
-      'Complex Litigation + Advisement',
-      'Product Life Cycle',
-      'Corporate Finance'
+      'Wealth Management',
+      'Startup + Venture Capital',
+      'Commercial Litigation',
+      'IP Litigation',
+      'Corporate Governance'
     ],
     education: [
-      'Stanford University, J.D.',
-      'University of California, Berkeley, B.A.'
+      'Columbia Law School, LL.M.'
     ],
-    barAdmissions: ['California', 'New York'],
-    insights: [
-      { type: 'CLIENT ALERT', title: 'Cases to Watch: Recent Developments in Securities Litigation', date: '03 Nov 2025' },
-      { type: 'BLOG POST', title: 'Navigating Complex Corporate Transactions', date: '15 Oct 2025' },
-      { type: 'ARTICLE', title: 'The Future of Class Action Litigation', date: '28 Sep 2025' }
-    ],
-    news: [
-      { type: 'MOFO NEWS', title: 'Michael Anderson Recognized as Leading Corporate Attorney', date: '01 Nov 2025' },
-      { type: 'PRESS RELEASE', title: 'Morrison Foerster Announces New Partner Promotions', date: '15 Aug 2025' }
-    ],
-    events: [
-      { type: 'SPEAKING', title: 'Corporate Law Symposium 2025', date: '20 Dec 2025' },
-      { type: 'PANEL', title: 'Annual Securities Litigation Conference', date: '10 Nov 2025' }
-    ],
-    rankings: [
-      'Chambers USA - Corporate/M&A',
-      'The Legal 500 - Leading Lawyer',
-      'Best Lawyers in America'
-    ]
+    barAdmissions: ['New York', 'China', 'United States District Court for the Northern District of Illinois'],
+    insights: [],
+    news: [],
+    events: [],
+    rankings: []
   },
   2: {
-    name: 'Sarah Chen',
+    name: 'Mao Peng',
     title: 'Partner',
-    office: 'Beijing',
-    email: 'schen@mofo.com',
-    phone: '+86 10 5909 3500',
+    office: 'New York/China',
+    email: 'Mao.peng@summitlaw.net',
+    phone: '(778)882-3518',
     image: null,
-    quote: '"I am passionate about helping clients navigate complex cross-border litigation and arbitration matters."',
-    bio: `Sarah Chen is a leading litigation partner based in Morrison Foerster's Beijing office. She specializes in international arbitration, cross-border disputes, and commercial litigation. With deep experience in both U.S. and Chinese legal systems, Sarah provides strategic counsel to multinational corporations facing complex legal challenges in Asia.
+    quote: '“I leverage dual qualifications in Chinese and New York law to deliver strategic, culturally attuned solutions for clients navigating complex trans-Pacific legal challenges.”',
+    bio: `Mao Peng is a dual-qualified attorney (PRC & New York) with over a decade of experience spanning judicial adjudication, international arbitration, and cross-border transactional work. Prior to joining Summit Law, Peng served as a judge in China, where he presided over complex corporate litigation. This judicial insight uniquely informs his strategic approach to dispute resolution and risk mitigation.
 
-Sarah regularly represents clients in high-stakes commercial disputes, including breach of contract, intellectual property infringement, and antitrust matters. She is recognized for her ability to navigate cultural and legal differences to achieve optimal outcomes for her clients.`,
+Mao Peng’s practice focuses on helping multinational clients mitigate risk and achieve enforceable outcomes in matters involving U.S.–China transactions, intellectual property, and global investment and compliance. His experience spans both litigation and non-litigation cases with a consistent emphasis on practical strategy and enforceability.`,
     practices: [
-      'Litigation',
-      'International Arbitration',
-      'Commercial Disputes',
-      'Antitrust'
+      'Transnational Litigation & Arbitration',
+      'Commercial Litigation',
+      'Judgment Recognition & Asset Recovery',
+      'IP Litigation',
+      'Global Investment & Compliance'
     ],
     education: [
-      'Harvard Law School, LL.M.',
-      'Peking University Law School, LL.B.'
+      'LL.M., Washington University in St. Louis',
+      'MBA, Chongqing University of Technology',
+      'LL.M., Chongqing University'
     ],
-    barAdmissions: ['New York', 'China'],
-    insights: [
-      { type: 'CLIENT ALERT', title: 'Recent Developments in China-U.S. Trade Disputes', date: '28 Oct 2025' },
-      { type: 'ARTICLE', title: 'International Arbitration Trends in Asia', date: '12 Sep 2025' }
-    ],
-    news: [
-      { type: 'MOFO NEWS', title: 'Sarah Chen Named Asia-Pacific Litigation Star', date: '05 Oct 2025' }
-    ],
-    events: [
-      { type: 'CONFERENCE', title: 'ICC Arbitration Conference Beijing', date: '15 Jan 2026' }
-    ],
-    rankings: [
-      'Chambers Asia-Pacific - Litigation',
-      'Legal 500 Asia Pacific - Dispute Resolution'
-    ]
+    barAdmissions: ['New York', 'China', 'United States District Court for the Northern District of Illinois'],
+    insights: [],
+    news: [],
+    events: [],
+    rankings: []
   }
 }
 
