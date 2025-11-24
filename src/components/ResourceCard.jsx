@@ -6,11 +6,12 @@ function ResourceCard({ title, href = '#' }) {
     <motion.a
       href={href}
       className="resource-card"
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: false, amount: 0.2 }}
       whileHover={{ y: -4 }}
-      transition={{ duration: 0.3 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
     >
       <h3>{title}</h3>
       <span className="arrow">→</span>

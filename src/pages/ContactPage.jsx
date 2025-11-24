@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import { useLanguage } from '../contexts/LanguageContext'
 import { t } from '../i18n/translations'
 import PageHeader from '../components/PageHeader'
@@ -42,7 +43,14 @@ function ContactPage() {
           </div>
 
           <div className="contact-grid">
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <motion.form 
+              className="contact-form" 
+              onSubmit={handleSubmit}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+            >
               <div className="form-group">
                 <label className="form-label">{t('contact.name', language)} *</label>
                 <input
@@ -102,15 +110,21 @@ function ContactPage() {
                 />
               </div>
 
-              <button type="submit" className="btn-primary">
+              <motion.button type="submit" className="btn-primary" whileTap={{ scale: 0.98 }}>
                 {t('contact.send', language)}
-              </button>
-            </form>
+              </motion.button>
+            </motion.form>
 
-            <aside className="contact-info-card">
+            <motion.aside 
+              className="contact-info-card"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+            >
               <h3 className="info-title">{t('contact.offices', language)}</h3>
               <p className="info-text">{t('contact.officesText', language)}</p>
-            </aside>
+            </motion.aside>
           </div>
         </div>
       </section>

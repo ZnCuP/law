@@ -56,10 +56,11 @@ function HomePage() {
               <Link key={idx} to={item.href} className="home-grid-link">
                 <motion.article
                   className="home-card"
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.3 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.35, ease: 'easeOut' }}
                 >
                   <div className="home-card-image">
                     <div className="card-badge">{item.badge}</div>

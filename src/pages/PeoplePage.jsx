@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../contexts/LanguageContext'
 import { t } from '../i18n/translations'
@@ -147,27 +148,35 @@ function PeoplePage() {
           {/* Attorney Grid */}
           <div className="attorneys-grid">
             {filteredAttorneys.map(attorney => (
-              <Link 
-                key={attorney.id} 
-                to={`/people/${attorney.id}`} 
-                className="attorney-card"
+              <motion.div
+                key={attorney.id}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.35, ease: 'easeOut' }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="attorney-image">
-                  {attorney.image ? (
-                    <img src={attorney.image} alt={attorney.name} />
-                  ) : (
-                    <div className="attorney-placeholder">
-                      <span>{attorney.name.split(' ').map(n => n[0]).join('')}</span>
-                    </div>
-                  )}
-                </div>
-                <div className="attorney-info">
-                  <h3>{attorney.name}</h3>
-                  <p className="attorney-title">{attorney.title}</p>
-                  <p className="attorney-practice">{attorney.practice}</p>
-                  <p className="attorney-office">{attorney.office}</p>
-                </div>
-              </Link>
+                <Link 
+                  to={`/people/${attorney.id}`} 
+                  className="attorney-card"
+                >
+                  <div className="attorney-image">
+                    {attorney.image ? (
+                      <img src={attorney.image} alt={attorney.name} />
+                    ) : (
+                      <div className="attorney-placeholder">
+                        <span>{attorney.name.split(' ').map(n => n[0]).join('')}</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="attorney-info">
+                    <h3>{attorney.name}</h3>
+                    <p className="attorney-title">{attorney.title}</p>
+                    <p className="attorney-practice">{attorney.practice}</p>
+                    <p className="attorney-office">{attorney.office}</p>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
 
