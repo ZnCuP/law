@@ -9,21 +9,23 @@
 <body>
   <div id="root"></div>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script>
+  <script type="module">
     (function(){
-      var hash = window.location.hash || ''
+      const base = import.meta.env.BASE_URL || '/'
+      const adminPath = `${base}admin/`
+      const hash = window.location.hash || ''
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', function(user){
-          var hasInvite = hash.indexOf('invite_token') !== -1
+        window.netlifyIdentity.on('init', (user) => {
+          const hasInvite = hash.includes('invite_token')
           if (!user && hasInvite) {
             window.netlifyIdentity.open('signup')
           }
         })
-        window.netlifyIdentity.on('login', function(){
-          window.location.href = '/admin/'
+        window.netlifyIdentity.on('login', () => {
+          window.location.href = adminPath
         })
-        window.netlifyIdentity.on('signup', function(){
-          window.location.href = '/admin/'
+        window.netlifyIdentity.on('signup', () => {
+          window.location.href = adminPath
         })
       }
     })()
