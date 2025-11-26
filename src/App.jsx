@@ -42,7 +42,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <LanguageProvider>
-      <Router basename="/law">
+      <Router basename={import.meta.env.BASE_URL}>
         <ScrollToTop />
         <div className="app">
           <Navbar />

@@ -7,6 +7,16 @@ const blogsData = Object.values(modules)
   .map(m => m.default || m)
   .sort((a, b) => new Date(b.date) - new Date(a.date))
 
+const withBase = (p) => {
+  if (!p) return null
+  if (/^https?:\/\//.test(p)) return p
+  const base = import.meta.env.BASE_URL
+  if (p.startsWith('/law/') && base === '/') return p.replace(/^\/law\//, '/')
+  if (p.startsWith('/uploads/') && base !== '/') return base + p.slice(1)
+  if (p.startsWith('/')) return p
+  return base + p
+}
+
 function BlogsPage() {
   return (
     <motion.div
@@ -32,7 +42,7 @@ function BlogsPage() {
                   transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.03 }}
                 >
                   <div className="blog-image">
-                    <img src={blog.image || `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%23b0b0b0' width='300' height='200'/%3E%3C/svg%3E`} alt={blog.title} />
+                    <img src={withBase(blog.image) || `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%23b0b0b0' width='300' height='200'/%3E%3C/svg%3E`} alt={blog.title} />
                   </div>
                   <h3>{blog.title}</h3>
                   <p>{blog.summary || blog.desc || ''}</p>

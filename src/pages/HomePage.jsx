@@ -30,9 +30,10 @@ function HomePage() {
     }
   ]
 
+  const bgUrl = `url(${import.meta.env.BASE_URL}court.jpg)`
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-      <section className="home-hero" style={{ backgroundImage: 'url(/law/court.jpg)' }}>
+      <section className="home-hero" style={{ backgroundImage: bgUrl }}>
         <div className="home-hero-overlay" />
         <motion.div
           className="home-hero-text"
