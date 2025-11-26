@@ -21,9 +21,6 @@
             window.netlifyIdentity.open('signup')
           }
         })
-        window.netlifyIdentity.on('login', () => {
-          window.location.href = adminPath
-        })
         window.netlifyIdentity.on('signup', () => {
           window.location.href = adminPath
         })
