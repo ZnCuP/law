@@ -24,9 +24,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build with base /law/
+      - name: Build with dynamic base using repo name
         run: |
-          VITE_BASE=/law/ npm run build
+          echo "Repo name: ${{ github.event.repository.name }}"
+          export VITE_BASE="/${{ github.event.repository.name }}/"
+          npm run build
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3

@@ -15,21 +15,23 @@
   <body>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', (user) => {
-          if (!user) {
-            const w = document.createElement('div');
-            w.className = 'login-wrapper';
-            w.innerHTML = '<div class="login-box"><h2>Admin Login</h2><button class="login-btn" id="loginBtn">Login with Netlify</button></div>';
-            document.body.appendChild(w);
-            document.getElementById('loginBtn').onclick = () => window.netlifyIdentity.open();
-          }
-        });
-        window.netlifyIdentity.on('login', () => {
-          window.location.reload();
-        });
-      }
+      (function(){
+        window.CMS_MANUAL_INIT = true;
+        function init(){
+          var cms = window.CMS || window.DecapCms;
+          if (cms && cms.init) cms.init();
+        }
+        var s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/decap-cms@3.9.0/dist/decap-cms.js';
+        s.onload = init;
+        s.onerror = function(){
+          var s2 = document.createElement('script');
+          s2.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+          s2.onload = init;
+          document.body.appendChild(s2);
+        };
+        document.body.appendChild(s);
+      })()
     </script>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>
