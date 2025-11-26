@@ -2,16 +2,10 @@ import { motion } from 'framer-motion'
 import PageHeader from '../components/PageHeader'
 import './BlogsPage.css'
 
-const blogsData = [
-  { title: '集体诉讼解析', desc: '为您的业务提供集体诉讼和产品洞察。' },
-  { title: '雇佣法评论', desc: '雇佣法问题的实用答案。' },
-  { title: '联邦巡回法院', desc: '处理所有联邦巡回法院事务。' },
-  { title: '政府合同洞察', desc: '最新的更新和分析。' },
-  { title: '影响力', desc: '为影响力驱动的变革者提供法律和商业洞察。' },
-  { title: '生命科学', desc: '因为没有人能免于法律。' },
-  { title: '科技', desc: '在技术、法律和商业的交汇处。' },
-  { title: '社交媒体', desc: '社交媒体的法律和商业。' }
-]
+const modules = import.meta.glob('../../content/blogs/*.json', { eager: true })
+const blogsData = Object.values(modules)
+  .map(m => m.default || m)
+  .sort((a, b) => new Date(b.date) - new Date(a.date))
 
 function BlogsPage() {
   return (
@@ -24,26 +18,31 @@ function BlogsPage() {
       
       <section className="section">
         <div className="container">
-          <div className="blog-grid">
-            {blogsData.map((blog, index) => (
-              <motion.div
-                key={index}
-                className="blog-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-              >
-                <div className="blog-image">
-                  <img src={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%23b0b0b0' width='300' height='200'/%3E%3C/svg%3E`} alt={blog.title} />
-                </div>
-                <h3>{blog.title}</h3>
-                <p>{blog.desc}</p>
-                <a href="#" className="blog-link">了解更多</a>
-              </motion.div>
-            ))}
-          </div>
+          {blogsData.length > 0 ? (
+            <div className="blog-grid">
+              {blogsData.map((blog, index) => (
+                <motion.div
+                  key={index}
+                  className="blog-card"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  whileHover={{ y: -4 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.03 }}
+                >
+                  <div className="blog-image">
+                    <img src={blog.image || `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%23b0b0b0' width='300' height='200'/%3E%3C/svg%3E`} alt={blog.title} />
+                  </div>
+                  <h3>{blog.title}</h3>
+                  <p>{blog.summary || blog.desc || ''}</p>
+                  <a href="#" className="blog-link">了解更多</a>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <p className="coming-soon">暂无博客内容</p>
+          )}
         </div>
       </section>
     </motion.div>
