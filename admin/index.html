@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CMS</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <style>
+      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      .login-wrapper { display: flex; align-items: center; justify-content: center; height: 100vh; }
+      .login-box { text-align: center; }
+      .login-btn { padding: 10px 16px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', (user) => {
+          if (!user) {
+            const w = document.createElement('div');
+            w.className = 'login-wrapper';
+            w.innerHTML = '<div class="login-box"><h2>Admin Login</h2><button class="login-btn" id="loginBtn">Login with Netlify</button></div>';
+            document.body.appendChild(w);
+            document.getElementById('loginBtn').onclick = () => window.netlifyIdentity.open();
+          }
+        });
+        window.netlifyIdentity.on('login', () => {
+          window.location.reload();
+        });
+      }
+    </script>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </body>
+</html>

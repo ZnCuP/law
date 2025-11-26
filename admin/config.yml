@@ -1,0 +1,59 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: false
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: news
+    label: News
+    label_singular: News Item
+    folder: content/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: json
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime }
+      - { name: badge, label: Badge, widget: string, default: "NEWS" }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: summary, label: Summary, widget: text, required: false }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: blogs
+    label: Blogs
+    label_singular: Blog Post
+    folder: content/blogs
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: json
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime }
+      - { name: author, label: Author, widget: string, required: false }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: summary, label: Summary, widget: text, required: false }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: people
+    label: People
+    label_singular: Person
+    folder: content/people
+    create: true
+    slug: "{{slug}}"
+    extension: json
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: title, label: Title, widget: string }
+      - { name: office, label: Office, widget: string }
+      - { name: email, label: Email, widget: string }
+      - { name: phone, label: Phone, widget: string }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: quote, label: Quote, widget: text, required: false }
+      - { name: bio, label: Biography, widget: markdown }
+      - { name: practices, label: Practices, widget: list, field: { name: item, label: Practice, widget: string } }
+      - { name: education, label: Education, widget: list, field: { name: item, label: Education, widget: string } }
+      - { name: barAdmissions, label: Bar Admissions, widget: list, field: { name: item, label: Admission, widget: string } }
