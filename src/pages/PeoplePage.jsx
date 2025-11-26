@@ -1,14 +1,23 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import { useLanguage } from '../contexts/LanguageContext'
 import { t } from '../i18n/translations'
 import './PeoplePage.css'
 
-const mockAttorneys = [
-  { id: 1, name: 'Jia Song', title: 'Founding Partner', practice: 'Wealth Management', office: 'New York/Shenzhen', image: null },
-  { id: 2, name: 'Mao Peng', title: 'Partner', practice: 'Transnational Litigation & Arbitration', office: 'New York/China', image: null }
-]
+const modules = import.meta.glob('../../content/people/*.json', { eager: true })
+const peopleData = Object.values(modules)
+  .map(m => m.default || m)
+  .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
+
+const withBase = (p) => {
+  if (!p) return null
+  if (/^https?:\/\//.test(p)) return p
+  const base = import.meta.env.BASE_URL
+  if (p.startsWith('/law/') && base === '/') return p.replace(/^\/law\//, '/')
+  if (p.startsWith('/uploads/') && base !== '/') return base + p.slice(1)
+  if (p.startsWith('/')) return p
+  return base + p
+}
 
 function PeoplePage() {
   const { language } = useLanguage()
@@ -39,11 +48,13 @@ function PeoplePage() {
     'China'
   ]
 
-  const filteredAttorneys = mockAttorneys.filter(attorney => {
-    const matchesSearch = attorney.name.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesPractice = !selectedPractice || selectedPractice === 'All Practices' || attorney.practice === selectedPractice
-    const matchesOffice = !selectedOffice || selectedOffice === 'All Offices' || attorney.office === selectedOffice
-    const matchesLetter = !selectedLetter || attorney.name[0].toUpperCase() === selectedLetter
+  const filteredAttorneys = peopleData.filter(person => {
+    const name = (person.name || '').toLowerCase()
+    const matchesSearch = name.includes(searchTerm.toLowerCase())
+    const practiceText = Array.isArray(person.practices) ? person.practices.join(', ') : (person.practice || '')
+    const matchesPractice = !selectedPractice || selectedPractice === 'All Practices' || practiceText === selectedPractice
+    const matchesOffice = !selectedOffice || selectedOffice === 'All Offices' || (person.office || '') === selectedOffice
+    const matchesLetter = !selectedLetter || (person.name || '')[0]?.toUpperCase() === selectedLetter
     
     return matchesSearch && matchesPractice && matchesOffice && matchesLetter
   })
@@ -147,22 +158,19 @@ function PeoplePage() {
 
           {/* Attorney Grid */}
           <div className="attorneys-grid">
-            {filteredAttorneys.map(attorney => (
+            {filteredAttorneys.map((attorney, idx) => (
               <motion.div
-                key={attorney.id}
+                key={(attorney.name || '') + idx}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Link 
-                  to={`/people/${attorney.id}`} 
-                  className="attorney-card"
-                >
+                <div className="attorney-card">
                   <div className="attorney-image">
                     {attorney.image ? (
-                      <img src={attorney.image} alt={attorney.name} />
+                      <img src={withBase(attorney.image)} alt={attorney.name} />
                     ) : (
                       <div className="attorney-placeholder">
                         <span>{attorney.name.split(' ').map(n => n[0]).join('')}</span>
@@ -172,10 +180,10 @@ function PeoplePage() {
                   <div className="attorney-info">
                     <h3>{attorney.name}</h3>
                     <p className="attorney-title">{attorney.title}</p>
-                    <p className="attorney-practice">{attorney.practice}</p>
+                    <p className="attorney-practice">{Array.isArray(attorney.practices) ? attorney.practices.join(', ') : (attorney.practice || '')}</p>
                     <p className="attorney-office">{attorney.office}</p>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>

@@ -2,14 +2,20 @@ import { motion } from 'framer-motion'
 import PageHeader from '../components/PageHeader'
 import ContentCard from '../components/ContentCard'
 
-const eventsData = [
-  { badge: '演讲活动', title: '创始人的退出策略：法律考虑与交易动态', date: '2026年1月14日 - 15日' },
-  { badge: '演讲活动', title: '第12周：开放论坛回顾', date: '2025年12月12日' },
-  { badge: '演讲活动', title: '数据隐私与国际合规的法律考虑', date: '2025年12月10日 - 11日' },
-  { badge: '演讲活动', title: '第11周：从外国投资者融资：CFIUS基础', date: '2025年12月5日' },
-  { badge: '演讲活动', title: 'ACI第42届FCPA国际会议', date: '2025年12月4日 - 5日' },
-  { badge: '演讲活动', title: '第10周：首次公开募股(IPO)', date: '2025年11月20日' }
-]
+const modules = import.meta.glob('../../content/events/*.json', { eager: true })
+const eventsData = Object.values(modules)
+  .map(m => m.default || m)
+  .sort((a, b) => new Date(b.date) - new Date(a.date))
+
+const withBase = (p) => {
+  if (!p) return null
+  if (/^https?:\/\//.test(p)) return p
+  const base = import.meta.env.BASE_URL
+  if (p.startsWith('/law/') && base === '/') return p.replace(/^\/law\//, '/')
+  if (p.startsWith('/uploads/') && base !== '/') return base + p.slice(1)
+  if (p.startsWith('/')) return p
+  return base + p
+}
 
 function EventsPage() {
   return (
@@ -23,15 +29,19 @@ function EventsPage() {
       <section className="section">
         <div className="container">
           <div className="content-grid">
-            {eventsData.map((item, index) => (
-              <ContentCard
-                key={index}
-                badge={item.badge}
-                title={item.title}
-                date={item.date}
-                imagePlaceholder={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect fill='%23c0c0c0' width='400' height='200'/%3E%3C/svg%3E`}
-              />
-            ))}
+            {eventsData.length > 0 ? (
+              eventsData.map((item, index) => (
+                <ContentCard
+                  key={index}
+                  badge={item.badge || 'EVENTS'}
+                  title={item.title}
+                  date={item.date}
+                  imagePlaceholder={withBase(item.image) || `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect fill='%23c0c0c0' width='400' height='200'/%3E%3C/svg%3E`}
+                />
+              ))
+            ) : (
+              <p className="coming-soon">暂无活动内容</p>
+            )}
           </div>
           
           <div className="cle-section">

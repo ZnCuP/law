@@ -5,28 +5,51 @@ import './HomePage.css'
 function HomePage() {
   const heroTitle = 'Global Standards, Local Advantage.'
   const heroSubtitle = 'Seamless U.S.–China legal services for businesses, families, and entrepreneurs.'
+  const withBase = (p) => {
+    if (!p) return null
+    if (/^https?:\/\//.test(p)) return p
+    const base = import.meta.env.BASE_URL
+    if (p.startsWith('/law/') && base === '/') return p.replace(/^\/law\//, '/')
+    if (p.startsWith('/uploads/') && base !== '/') return base + p.slice(1)
+    if (p.startsWith('/')) return p
+    return base + p
+  }
+
+  const newsModules = import.meta.glob('../../content/news/*.json', { eager: true })
+  const eventsModules = import.meta.glob('../../content/events/*.json', { eager: true })
+  const insightsModules = import.meta.glob('../../content/insights/*.json', { eager: true })
+
+  const latest = (mods) => {
+    const arr = Object.values(mods).map(m => m.default || m).filter(Boolean)
+    arr.sort((a, b) => new Date(b.date) - new Date(a.date))
+    return arr[0] || null
+  }
+
+  const latestNews = latest(newsModules)
+  const latestEvents = latest(eventsModules)
+  const latestInsights = latest(insightsModules)
 
   const featured = [
     {
-      badge: 'INSIGHTS',
-      title: 'European Digital Compliance: Key Digital Regulation & Compliance Developments',
-      date: '03 Nov 2025',
+      badge: latestInsights?.badge || 'INSIGHTS',
+      title: latestInsights?.title || 'Explore latest insights',
+      date: latestInsights?.date || '',
       href: '/insights',
-      imagePlaceholder: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect fill='%23f0f0f0' width='400' height='200'/%3E%3C/svg%3E`
+      imagePlaceholder: withBase(latestInsights?.image) || `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect fill='%23f0f0f0' width='400' height='200'/%3E%3C/svg%3E`
     },
     {
-      badge: 'EVENTS',
-      title: 'Corporate Law Symposium 2025',
-      date: '20 Dec 2025',
+      badge: latestEvents?.badge || 'EVENTS',
+      title: latestEvents?.title || 'Upcoming events',
+      date: latestEvents?.date || '',
       href: '/events',
-      imagePlaceholder: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect fill='%23e8e8e8' width='400' height='200'/%3E%3C/svg%3E`
+      imagePlaceholder: withBase(latestEvents?.image) || `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect fill='%23e8e8e8' width='400' height='200'/%3E%3C/svg%3E`
     },
     {
-      badge: 'NEWS',
-      title: 'Recognized as Leading Corporate Attorney',
-      date: '01 Nov 2025',
+      badge: latestNews?.badge || 'NEWS',
+      title: latestNews?.title || 'Latest news',
+      date: latestNews?.date || '',
       href: '/news',
-      imagePlaceholder: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect fill='%23dcdcdc' width='400' height='200'/%3E%3C/svg%3E`
+      imagePlaceholder: withBase(latestNews?.image) || `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect fill='%23dcdcdc' width='400' height='200'/%3E%3C/svg%3E`
     }
   ]
 

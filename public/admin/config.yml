@@ -57,3 +57,46 @@ collections:
       - { name: practices, label: Practices, widget: list, field: { name: item, label: Practice, widget: string } }
       - { name: education, label: Education, widget: list, field: { name: item, label: Education, widget: string } }
       - { name: barAdmissions, label: Bar Admissions, widget: list, field: { name: item, label: Admission, widget: string } }
+
+  - name: insights
+    label: Insights
+    label_singular: Insight
+    folder: content/insights
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: json
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime }
+      - { name: badge, label: Badge, widget: string, default: "INSIGHTS" }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: summary, label: Summary, widget: text, required: false }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: events
+    label: Events
+    label_singular: Event
+    folder: content/events
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: json
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: string }
+      - { name: badge, label: Badge, widget: string, default: "EVENTS" }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: summary, label: Summary, widget: text, required: false }
+      - { name: body, label: Body, widget: markdown, required: false }
+
+  - name: resources
+    label: Resources
+    label_singular: Resource
+    folder: content/resources
+    create: true
+    slug: "{{slug}}"
+    extension: json
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: summary, label: Summary, widget: text, required: false }
+      - { name: link, label: External Link, widget: string, required: false }
