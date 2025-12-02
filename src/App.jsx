@@ -11,6 +11,7 @@ import BlogsPage from './pages/BlogsPage'
 import ResourcesPage from './pages/ResourcesPage'
 import PeoplePage from './pages/PeoplePage'
 import AttorneyDetailPage from './pages/AttorneyDetailPage'
+import NewsDetailPage from './pages/NewsDetailPage'
 import PracticesPage from './pages/PracticesPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
@@ -27,6 +28,7 @@ function AnimatedRoutes() {
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/insights" element={<InsightsPage />} />
             <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/:slug" element={<NewsDetailPage />} />
             <Route path="/events" element={<EventsPage />} />
         <Route path="/blogs" element={<BlogsPage />} />
         <Route path="/people" element={<PeoplePage />} />
